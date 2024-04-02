@@ -1,0 +1,31 @@
+syntax = "v1"
+
+info (
+	title: user
+	desc: 用户服务
+	author: "uhziel"
+	email: "uhziel@gmail.com"
+)
+
+type loginReq {
+	Code  string `json:"code"`
+	State string `json:"state"`
+}
+
+type loginResp {
+	AccessToken  string `json:"accessToken"`
+	AccessExpire int64  `json:"accessExpire"`
+	RenewAfter   int64  `json:"renewAfter"`
+}
+
+type userDetailResp {
+	Name string `json:"name"`
+}
+
+service user-api {
+	@handler Login
+	post /user/login(loginReq) returns(loginResp)
+
+	@handler UserDetail
+	get /user returns(userDetailResp)
+}
