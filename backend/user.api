@@ -25,7 +25,13 @@ type userDetailResp {
 service user-api {
 	@handler Login
 	post /user/login(loginReq) returns(loginResp)
+}
 
+@server(
+	middleware: AccessTokenMiddleware
+	jwt: Auth
+)
+service user-api {
 	@handler UserDetail
 	get /user returns(userDetailResp)
 }
