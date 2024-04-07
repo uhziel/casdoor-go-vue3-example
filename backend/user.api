@@ -13,9 +13,7 @@ type loginReq {
 }
 
 type loginResp {
-	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RenewAfter   int64  `json:"renewAfter"`
+	AccessToken string `json:"accessToken"`
 }
 
 type userDetailResp {
