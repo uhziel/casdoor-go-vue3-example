@@ -8,8 +8,8 @@ info (
 )
 
 type loginReq {
-	Code  string `json:"code"`
-	State string `json:"state"`
+	Code  string `form:"code"`
+	State string `form:"state"`
 }
 
 type loginResp {
@@ -24,7 +24,7 @@ type userDetailResp {
 
 service user-api {
 	@handler Login
-	post /user/login(loginReq) returns(loginResp)
+	get /user/login(loginReq) returns(loginResp)
 }
 
 @server(
