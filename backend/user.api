@@ -27,7 +27,6 @@ service user-api {
 
 @server(
 	middleware: AccessTokenMiddleware
-	jwt: Auth
 )
 service user-api {
 	@handler UserDetail
