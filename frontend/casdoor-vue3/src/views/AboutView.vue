@@ -3,7 +3,6 @@
     <h1>This is an about page</h1>
     <ul>
       <li>name: {{ name }}</li>
-      <li>email: {{ email }}</li>
     </ul>
   </div>
 </template>
@@ -12,11 +11,10 @@
 import { onMounted, ref } from 'vue';
 
 const name = ref("")
-const email = ref("")
 
 onMounted(async () => {
   const accessToken = localStorage.getItem("accessToken")
-  const serverInfoAPI = "http://localhost:3111/api/info"
+  const serverInfoAPI = "http://localhost:5173/user"
 
   const resp = await fetch(serverInfoAPI, {
     headers: {
@@ -26,7 +24,6 @@ onMounted(async () => {
 
   const res = await resp.json()
   name.value = res.name
-  email.value = res.email
 })
 
 </script>

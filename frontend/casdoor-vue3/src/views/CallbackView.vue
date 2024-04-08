@@ -5,26 +5,24 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
-const props = defineProps<{
-  code: string
-  state: string
-}>()
-
+const route = useRoute()
 const router = useRouter()
-const serverLoginAPI = "http://localhost:3111/api/login"
+const serverLoginAPI = "http://localhost:5173/user/login"
 
-// 使用 code 和 state 获取 accessToken
-let resp = await fetch(`serverLoginAPI?code={props.code}&state={props.state}`, {
-  method: "POST",
+onMounted(async() => {
+  // 使用 code 和 state 获取 accessToken
+  let resp = await fetch(`${serverLoginAPI}?code=${route.query.code}&state=${route.query.state}`, {
+    method: "GET",
+  })
+
+  let res = await resp.json()
+
+  localStorage.setItem("accessToken", res.accessToken)
+
+  router.replace("/about")
 })
-
-let res = await resp.json()
-
-localStorage.setItem("accessToken", res.accessToken)
-localStorage.setItem("refreshToken", res.refreshToken)
-
-router.replace("/about")
 
 </script>
