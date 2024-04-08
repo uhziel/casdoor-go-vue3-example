@@ -67,7 +67,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 	}
 
 	tokenResp := TokenResp{}
-	if err = httpc.Parse(httpResp, &tokenReq); err != nil {
+	if err = httpc.Parse(httpResp, &tokenResp); err != nil {
 		return
 	}
 
